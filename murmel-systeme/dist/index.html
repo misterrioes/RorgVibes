@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Eine interaktive Murmel-Visualisierung für Stellenwertsysteme von Basis 2 bis 16."
+    />
+    <title>Murmel-Systeme</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main>
+      <header class="hero">
+        <a class="brand" href="#labor" aria-label="Murmel-Systeme – zum Labor">
+          <span class="brand-mark" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+          <span>Murmel-Systeme</span>
+        </a>
+
+        <a class="site-switch" href="/twos-complement/" aria-label="Zum Zweierkomplement-Kreis">
+          Zweierkomplement <span aria-hidden="true">→</span>
+        </a>
+
+        <div class="hero-copy">
+          <p class="eyebrow">Zahlensysteme begreifen</p>
+          <h1>Eine Zahl.<br /><em>Viele Behälter.</em></h1>
+          <p class="intro">
+            Jede Stelle ist ein Behälter. Je höher ihr Stellenwert, desto größer
+            ihr Fassungsvermögen. Fülle eine Zahl ein und schau ihr beim
+            Sortieren zu.
+          </p>
+          <a class="start-link" href="#labor">
+            Experiment starten <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+
+        <div class="hero-demo" aria-hidden="true">
+          <div class="demo-vessel demo-vessel-large">
+            <span class="demo-marble m1"></span>
+            <span class="demo-marble m2"></span>
+            <span class="demo-marble m3"></span>
+          </div>
+          <div class="demo-vessel demo-vessel-small">
+            <span class="demo-marble m4"></span>
+          </div>
+          <p><strong>25</strong><span>im Zweiersystem</span></p>
+        </div>
+      </header>
+
+      <section class="lab" id="labor" aria-labelledby="lab-title">
+        <div class="lab-heading">
+          <div>
+            <p class="eyebrow">Das Murmel-Labor</p>
+            <h2 id="lab-title">Baue deine Zahl</h2>
+          </div>
+          <p class="lab-note">
+            Die <strong>Fläche</strong> jedes Behälters und seiner Murmelbündel
+            wächst exakt mit dem Stellenwert. Große Zahlen dürfen deshalb
+            richtig groß werden.
+          </p>
+        </div>
+
+        <form class="controls" id="number-form" novalidate>
+          <div class="field number-field">
+            <label for="decimal-input">Dezimalzahl</label>
+            <div class="input-shell">
+              <input
+                id="decimal-input"
+                name="decimal"
+                type="number"
+                min="0"
+                max="1023"
+                step="1"
+                value="25"
+                inputmode="numeric"
+                aria-describedby="input-help input-error"
+              />
+              <span class="input-limit">0–1023</span>
+            </div>
+            <span id="input-help" class="sr-only">Ganze Zahl von 0 bis 1023</span>
+            <p id="input-error" class="error" role="alert"></p>
+          </div>
+
+          <fieldset class="field base-field">
+            <legend>Basis</legend>
+            <div class="base-control">
+              <button type="button" class="step-button" id="base-down" aria-label="Basis verringern">−</button>
+              <div class="base-readout">
+                <span id="base-value">2</span>
+                <small>System</small>
+              </div>
+              <button type="button" class="step-button" id="base-up" aria-label="Basis erhöhen">+</button>
+              <input id="base-input" name="base" type="range" min="2" max="16" value="2" aria-label="Basis von 2 bis 16" />
+            </div>
+          </fieldset>
+
+          <div class="presets" aria-label="Beispiele">
+            <span>Beispiele</span>
+            <button type="button" data-number="25" data-base="2">25 → Basis 2</button>
+            <button type="button" data-number="125" data-base="8">125 → Basis 8</button>
+            <button type="button" data-number="54" data-base="15">54 → Basis 15</button>
+            <button type="button" data-number="1023" data-base="16">1023 → Basis 16</button>
+          </div>
+        </form>
+
+        <section class="result-panel" aria-labelledby="result-title">
+          <div class="result-topline">
+            <div>
+              <p class="micro-label">Deine Zahl</p>
+              <h3 id="result-title" class="result-equivalence" aria-live="polite"></h3>
+            </div>
+            <div class="legend" aria-label="Legende">
+              <span><i class="legend-marble"></i> ein Bündel</span>
+              <span><i class="legend-vessel"></i> ein Stellenwert</span>
+            </div>
+          </div>
+
+          <div class="stage-wrap" id="stage-wrap" tabindex="0" aria-label="Behälterdarstellung; horizontal und vertikal scrollbar">
+            <div class="stage" id="stage"></div>
+          </div>
+
+          <div class="sum-card">
+            <p class="micro-label">Summenformel</p>
+            <p id="sum-formula" class="sum-formula"></p>
+            <p class="sum-explainer">Alle gefüllten Stellen zusammen ergeben wieder deine Dezimalzahl.</p>
+          </div>
+        </section>
+      </section>
+
+      <section class="explanation" aria-labelledby="explanation-title">
+        <p class="eyebrow">So liest du die Behälter</p>
+        <h2 id="explanation-title">Stelle für Stelle</h2>
+        <div class="explanation-grid">
+          <article>
+            <span class="step-number">01</span>
+            <h3>Der Stellenwert</h3>
+            <p>Von rechts nach links wächst er mit Potenzen der Basis: 1, b, b² und so weiter.</p>
+          </article>
+          <article>
+            <span class="step-number">02</span>
+            <h3>Die Ziffer</h3>
+            <p>Sie sagt, wie viele Bündel in einem Behälter liegen. In Basis 16 sind das höchstens 15.</p>
+          </article>
+          <article>
+            <span class="step-number">03</span>
+            <h3>Der Beitrag</h3>
+            <p>Ziffer mal Stellenwert ergibt den Inhalt. Die Summe aller Inhalte ist die ganze Zahl.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Rechnerorganisation · Zahlensysteme von Basis 2 bis 16</p>
+      <a href="#labor">Zurück zum Labor ↑</a>
+    </footer>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

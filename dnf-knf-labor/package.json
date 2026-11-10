@@ -1,0 +1,29 @@
+{
+  "name": "dnf-knf-labor",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "katex": "latest",
+    "vite": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "latest",
+    "@testing-library/react": "latest",
+    "@types/katex": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "jsdom": "^26.1.0",
+    "typescript": "latest",
+    "vitest": "latest"
+  }
+}
