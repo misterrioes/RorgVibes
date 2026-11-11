@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Interaktives Labor für 8-Bit-Minifloats und IEEE-754 Half Precision">
+  <title>Minifloat-Labor</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="collection-nav" aria-label="Lernstrecke">
+    <a href="/twos-complement/" aria-label="Vorheriges Labor: Zweierkomplement">← <span>Zurück</span></a>
+    <a class="collection-home" href="/"><b>02</b><span>Gleitkomma</span><small>Übersicht</small></a>
+    <a href="/logic/" aria-label="Nächstes Labor: DNF und KNF"><span>Weiter</span> →</a>
+  </nav>
+  <header class="hero">
+    <div><p class="eyebrow">RECHNERARCHITEKTUR · INTERAKTIVES LABOR</p><h1>Wie dicht liegen Zahlen<br><em>wirklich</em> beieinander?</h1></div>
+    <div class="format-card" aria-label="Format auswählen">
+      <span>ZAHLENFORMAT</span>
+      <div class="format-choice" role="group" aria-label="Floating-Point-Format"><button class="active" data-format="mini8" aria-pressed="true">8-Bit Mini</button><button data-format="half16" aria-pressed="false">16-Bit Half</button></div>
+      <div class="format-bits"><b class="sign" id="formatSign">1</b><b class="exp" id="formatExp">3</b><b class="mant" id="formatMant">4</b></div>
+      <small id="formatSummary">8 Bit · Bias 3 · Vorzeichen / Exponent / Mantisse</small>
+    </div>
+  </header>
+
+  <main>
+    <section class="lab" aria-labelledby="axis-title">
+      <div class="lab-head"><div><p class="step">01 · ERKUNDEN</p><h2 id="axis-title">Der Minifloat-Zahlenstrahl</h2></div><p class="lede">Jeder Strich ist eine darstellbare Zahl. Zoome hinein und beobachte, wie sich die Lücken verändern.</p></div>
+      <div class="controls">
+        <label class="input-wrap"><span>Dezimalwert</span><input id="decimalInput" type="number" step="any" value="5.3"></label>
+        <label class="slider-wrap"><span>Wert wählen</span><input id="valueSlider" type="range" min="-15.5" max="15.5" step="0.01" value="5.3"></label>
+        <div class="button-group" aria-label="Ansicht steuern"><button id="zoomOut" title="Herauszoomen">−</button><button id="resetView">Alle Werte</button><button id="zoomIn" title="Hineinzoomen">+</button></div>
+        <label class="switch"><input id="gapToggle" type="checkbox"><span></span>Lücken färben</label>
+      </div>
+      <div class="axis-shell">
+        <svg id="numberLine" role="img" aria-label="Interaktiver Zahlenstrahl aller endlichen Minifloat-Werte"></svg>
+        <div id="tooltip" class="tooltip" hidden></div>
+        <div class="axis-hint"><span id="axisDensity"></span>Mausrad zum Zoomen · Ziehen zum Verschieben · Strich anklicken</div>
+      </div>
+      <div class="legend"><span><i class="dot target"></i>Eingabe</span><span><i class="dot rounded"></i>Abgeschnitten</span><span><i class="dot representable"></i>Darstellbar</span></div>
+
+      <div class="result-grid">
+        <article class="round-card"><p class="step">02 · ABSCHNEIDEN</p><h3>Von <strong id="wantedValue">5,3</strong> zum darstellbaren Wert in Richtung null</h3><div class="round-journey"><span id="lowerNeighbor">5</span><div><i id="journeyTarget"></i><i id="journeyRounded"></i></div><span id="upperNeighbor">5,5</span></div><div class="metrics"><div><small>ERGEBNIS</small><b id="roundedValue">5,25</b></div><div><small>ABS. FEHLER</small><b id="absoluteError">0,05</b></div><div><small>REL. FEHLER</small><b id="relativeError">0,943 %</b></div></div><p class="tie-note">Rundungsmodus: <b>Round towards zero</b> · Nicht passende Mantissenbits werden abgeschnitten.</p></article>
+        <article class="bits-card"><p class="step">03 · DEKODIEREN</p><h3>Aus Bits wird eine Zahl</h3><div id="bitDisplay" class="bits" aria-label="Bitdarstellung"></div><div id="formula" class="formula"></div></article>
+      </div>
+    </section>
+
+    <section class="concepts">
+      <div class="section-intro"><p class="step">04 · VERSTEHEN</p><h2>Präzision ist eine Frage<br>der Größenordnung.</h2></div>
+      <div class="concept-grid">
+        <article><span>1</span><h3>Diskret, nicht kontinuierlich</h3><p>Zwischen zwei Strichen liegen unendlich viele reelle Zahlen – aber kein weiterer Minifloat.</p></article>
+        <article><span>2</span><h3>Die Lücken wachsen</h3><p>Innerhalb eines Exponentenbereichs bleibt der Abstand konstant. An der nächsten Zweierpotenz verdoppelt er sich.</p></article>
+        <article><span>3</span><h3>Subnormal heißt sanft</h3><p>Ohne implizite führende 1 füllen Subnormalzahlen den Bereich zwischen null und der kleinsten normalen Zahl.</p></article>
+      </div>
+      <aside class="takeaway"><b>Probier es aus:</b><span>Vergleiche <button data-example="0.07">0,07</button>, <button data-example="1.3">1,3</button> und <button data-example="13.3">13,3</button>. Wie verändert sich der absolute Fehler?</span></aside>
+    </section>
+  </main>
+  <footer><span>MINIFLOAT-LABOR</span><span id="footerFormat">1 Vorzeichenbit · 3 Exponentenbits · 4 Mantissenbits · Bias 3</span></footer>
+  <script src="app.js"></script>
+</body>
+</html>
