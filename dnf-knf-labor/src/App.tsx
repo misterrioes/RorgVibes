@@ -29,6 +29,11 @@ export default function App() {
   const selectedRow = activeRow === null ? null : table.rows[activeRow];
 
   return <div className="app">
+    <nav className="collection-nav" aria-label="Lernstrecke">
+      <a href="/minifloat/" aria-label="Vorheriges Labor: Minifloat">← <span>Zurück</span></a>
+      <a className="collection-home" href="/"><b>03</b><span>Digitalentwurf</span><small>Übersicht</small></a>
+      <a href="/murmel/" aria-label="Nächstes Labor: Murmel-Systeme"><span>Weiter</span> →</a>
+    </nav>
     <header className="hero"><div><p className="eyebrow">RECHNERORGANISATION · INTERAKTIVES LABOR</p><h1>Von der Wahrheitstabelle<br/><em>zum Schaltplan.</em></h1><p className="hero-copy">Erkunde, wie einzelne Zeilen zu Normalformen werden — und wie aus einer booleschen Formel ein lebendiges digitales Schaltnetz entsteht.</p></div><div className="hero-mark" aria-hidden="true"><span>A</span><i/><span>B</span><b>Y</b></div></header>
 
     <main>

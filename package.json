@@ -1,0 +1,11 @@
+{
+  "name": "rechnerarchitektur-labore",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "npm run build --prefix overview && npm run build --prefix murmel-systeme && npm run build --prefix twos-complement-ring && npm run build --prefix minifloat-labor && npm run build --prefix dnf-knf-labor",
+    "dev": "node serve-local.mjs",
+    "test": "node --test murmel-systeme/tests/number-systems.test.mjs && npm test --prefix dnf-knf-labor && node scripts/check-collection.mjs"
+  }
+}
