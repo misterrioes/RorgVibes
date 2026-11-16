@@ -30,7 +30,7 @@ export default function App() {
 
   return <div className="app">
     <nav className="collection-nav" aria-label="Lernstrecke">
-      <a href="https://minofloatLabor.netlify.app/" aria-label="Vorheriges Labor: Minifloat">← <span>Zurück</span></a>
+      <a href="https://miniFloatLabor.netlify.app/" aria-label="Vorheriges Labor: Minifloat">← <span>Zurück</span></a>
       <a className="collection-home" href="https://RorgTutPhilippLabs.netlify.app/"><b>03</b><span>Digitalentwurf</span><small>Übersicht</small></a>
       <a href="https://zahlensystemeanalogie.netlify.app/" aria-label="Nächstes Labor: Murmel-Systeme"><span>Weiter</span> →</a>
     </nav>
